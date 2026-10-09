@@ -65,7 +65,6 @@ All four render to small GPU canvases that are scaled up, to keep them cheap.
 - The four WGSL shaders and the Luau scripts.
 - Story timing, copy, colours, and the structure of the possession sequence.
 
-**Refined in the Rive Editor** — *(fill this in honestly after your editor pass)*
 - ...
 
 ## A note on process
