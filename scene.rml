@@ -1,0 +1,366 @@
+<Rive version="1" kind="fragment">
+    <!-- NOVIQO, slice 1: orb + cursor-following eyes + fog shader + WAKE.
+         Cursor and corruption are view model numbers written by track.luau.
+         Fog is a ScriptedLayout that renders fog.wgsl on a GPU canvas.
+         Keys: W wake, T talk, E / Esc escape (talk/escape are wired but not yet consumed). -->
+    <Artboard defaultStateMachineId="0:7" viewModelId="0:40" viewModelInstanceId="0:48" clip="true" width="900" height="600" styleId="0:5" name="NOVIQO" id="0:2">
+        <LayoutComponentStyle name="Artboard Style" id="0:5"/>
+        <Fill name="Background">
+            <SolidColor colorValue="FF050509" name="Color"/>
+        </Fill>
+
+        <!-- Buttons. Declared before the input layer so they sit in front and receive clicks.
+             y is bound to btnY: the director slides them off-screen during the jump scare. -->
+        <Node x="0" y="548" name="Buttons" id="0:149">
+            <DataBindContext sourcePathIds="0:40-0:105" propertyKey="14"/>
+            <Text x="330" y="0" originX="0.5" originY="0.5" sizingValue="autoWidth" name="Talk Label" id="0:153">
+                <TextStylePaint fontSize="14" fontAssetId="0:100" name="Style" id="0:156">
+                    <Fill name="Fill"><SolidColor colorValue="FFEDEDED" name="C"/></Fill>
+                </TextStylePaint>
+                <TextValueRun styleId="0:156" text="TALK  [T]" name="Run"/>
+            </Text>
+            <Shape x="330" y="0" name="Talk Button" id="0:150">
+                <Rectangle width="116" height="40" cornerRadiusTL="10" originX="0.5" originY="0.5" name="Path"/>
+                <Fill name="Fill"><SolidColor colorValue="FF0B0B12" name="C"/></Fill>
+                <Stroke thickness="1.5" name="Edge"><SolidColor colorValue="FF7C3AED" name="C"/></Stroke>
+            </Shape>
+            <Text x="450" y="0" originX="0.5" originY="0.5" sizingValue="autoWidth" name="Wake Label" id="0:154">
+                <TextStylePaint fontSize="14" fontAssetId="0:100" name="Style" id="0:157">
+                    <Fill name="Fill"><SolidColor colorValue="FFEDEDED" name="C"/></Fill>
+                </TextStylePaint>
+                <TextValueRun styleId="0:157" text="WAKE  [W]" name="Run"/>
+            </Text>
+            <Shape x="450" y="0" name="Wake Button" id="0:151">
+                <Rectangle width="116" height="40" cornerRadiusTL="10" originX="0.5" originY="0.5" name="Path"/>
+                <Fill name="Fill"><SolidColor colorValue="FF0B0B12" name="C"/></Fill>
+                <Stroke thickness="1.5" name="Edge"><SolidColor colorValue="FF7C3AED" name="C"/></Stroke>
+            </Shape>
+            <Text x="570" y="0" originX="0.5" originY="0.5" sizingValue="autoWidth" name="Escape Label" id="0:155">
+                <TextStylePaint fontSize="14" fontAssetId="0:100" name="Style" id="0:158">
+                    <Fill name="Fill"><SolidColor colorValue="FFEDEDED" name="C"/></Fill>
+                </TextStylePaint>
+                <TextValueRun styleId="0:158" text="ESCAPE  [E]" name="Run"/>
+            </Text>
+            <Shape x="570" y="0" name="Escape Button" id="0:152">
+                <Rectangle width="116" height="40" cornerRadiusTL="10" originX="0.5" originY="0.5" name="Path"/>
+                <Fill name="Fill"><SolidColor colorValue="FF0B0B12" name="C"/></Fill>
+                <Stroke thickness="1.5" name="Edge"><SolidColor colorValue="FF7C3AED" name="C"/></Stroke>
+            </Shape>
+        </Node>
+
+        <!-- Front: invisible, fill-sized, receives the pointer for the whole artboard. -->
+        <LayoutComponent width="900" height="600" styleId="0:11" name="Input Layer" id="0:10">
+            <LayoutComponentStyle positionTypeValue="absolute" positionLeft="0" positionTop="0" name="Layout Style" id="0:11"/>
+            <ScriptedLayout scriptAssetId="0:80" name="Track" id="0:12"/>
+        </LayoutComponent>
+
+        <!-- Director: the story clock. No drawing. -->
+        <LayoutComponent width="900" height="600" styleId="0:27" name="Director" id="0:26">
+            <LayoutComponentStyle positionTypeValue="absolute" positionLeft="0" positionTop="0" layoutWidthScaleType="1" layoutHeightScaleType="1" widthUnitsValue="3" heightUnitsValue="3" name="Layout Style" id="0:27"/>
+            <ScriptedLayout scriptAssetId="0:89" name="DirectorScript" id="0:28"/>
+        </LayoutComponent>
+
+        <!-- HUD text. Above the horror layer so the scare line reads on the black. -->
+        <Text x="24" y="24" originX="0" originY="0.5" sizingValue="autoWidth" name="Title" id="0:120">
+            <TextStylePaint fontSize="14" fontAssetId="0:100" name="Style" id="0:121">
+                <Fill name="Fill"><SolidColor colorValue="FF666675" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:121" text="NOVIQO // SYSTEM" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:114" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="450" y="452" originX="0.5" originY="0.5" sizingValue="autoWidth" name="Status" id="0:122">
+            <TextStylePaint fontSize="14" fontAssetId="0:100" name="Style" id="0:123">
+                <Fill name="Fill"><SolidColor colorValue="FFEDEDED" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:123" text="" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:110" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="450" y="492" originX="0.5" originY="0.5" sizingValue="autoWidth" name="Line" id="0:124">
+            <TextStylePaint fontSize="22" fontAssetId="0:100" name="Style" id="0:125">
+                <Fill name="Fill"><SolidColor colorValue="FFC9B8FF" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:125" text="" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:111" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="450" y="120" originX="0.5" originY="0.5" sizingValue="autoWidth" name="Alert" id="0:126">
+            <TextStylePaint fontSize="34" fontAssetId="0:100" name="Style" id="0:127">
+                <Fill name="Fill"><SolidColor colorValue="FFFF2020" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:127" text="" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:112" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="24" y="574" originX="0" originY="0.5" sizingValue="autoWidth" name="Integrity" id="0:128">
+            <TextStylePaint fontSize="12" fontAssetId="0:100" name="Style" id="0:129">
+                <Fill name="Fill"><SolidColor colorValue="FF666675" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:129" text="" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:113" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+
+        <!-- Horror layer: orb flicker, jump scare, blackout. Topmost visual. -->
+        <LayoutComponent width="900" height="600" styleId="0:24" name="Horror" id="0:23">
+            <LayoutComponentStyle positionTypeValue="absolute" positionLeft="0" positionTop="0" layoutWidthScaleType="1" layoutHeightScaleType="1" widthUnitsValue="3" heightUnitsValue="3" name="Layout Style" id="0:24"/>
+            <ScriptedLayout scriptAssetId="0:87" name="HorrorScript" id="0:25"/>
+        </LayoutComponent>
+
+        <!-- CRT glitch overlay: above the fog, below the input layer. -->
+        <LayoutComponent width="900" height="600" styleId="0:17" name="Glitch" id="0:16">
+            <LayoutComponentStyle positionTypeValue="absolute" positionLeft="0" positionTop="0" layoutWidthScaleType="1" layoutHeightScaleType="1" widthUnitsValue="3" heightUnitsValue="3" name="Layout Style" id="0:17"/>
+            <ScriptedLayout scriptAssetId="0:83" name="GlitchScript" id="0:18"/>
+        </LayoutComponent>
+
+        <!-- Ghost trail: follows the cursor once corruption rises. Under the CRT overlay. -->
+        <LayoutComponent width="900" height="600" styleId="0:21" name="Trail" id="0:19">
+            <LayoutComponentStyle positionTypeValue="absolute" positionLeft="0" positionTop="0" layoutWidthScaleType="1" layoutHeightScaleType="1" widthUnitsValue="3" heightUnitsValue="3" name="Layout Style" id="0:21"/>
+            <ScriptedLayout scriptAssetId="0:85" name="TrailScript" id="0:22"/>
+        </LayoutComponent>
+
+        <!-- Fog: above the orb, below the input layer. -->
+        <LayoutComponent width="900" height="600" styleId="0:14" name="Fog" id="0:13">
+            <LayoutComponentStyle positionTypeValue="absolute" positionLeft="0" positionTop="0" name="Layout Style" id="0:14"/>
+            <ScriptedLayout scriptAssetId="0:81" name="FogScript" id="0:15"/>
+        </LayoutComponent>
+
+        <!-- Eyes: x/y bound to the script (absolute, orb centre is 450,300). -->
+        <Node x="450" y="300" name="Eyes" id="0:30">
+            <DataBindContext sourcePathIds="0:40-0:45" propertyKey="13"/>
+            <DataBindContext sourcePathIds="0:40-0:46" propertyKey="14"/>
+            <Shape x="-34" y="-6" name="Eye L" id="0:31">
+                <Ellipse width="22" height="30" originX="0.5" originY="0.5" name="Path"/>
+                <Fill name="Fill">
+                    <SolidColor colorValue="FFEDEDED" name="Color" id="0:36"/>
+                </Fill>
+            </Shape>
+            <Shape x="34" y="-6" name="Eye R" id="0:32">
+                <Ellipse width="22" height="30" originX="0.5" originY="0.5" name="Path"/>
+                <Fill name="Fill">
+                    <SolidColor colorValue="FFEDEDED" name="Color" id="0:37"/>
+                </Fill>
+            </Shape>
+        </Node>
+
+        <!-- Core: feathered glow stroke first, crisp rim after. -->
+        <Shape x="450" y="300" name="Core" id="0:20">
+            <Ellipse width="220" height="220" originX="0.5" originY="0.5" name="Path"/>
+            <Fill name="Body">
+                <RadialGradient startX="0" startY="-30" endX="120" endY="-30" name="Gradient">
+                    <GradientStop colorValue="FF3B2A6B" position="0"/>
+                    <GradientStop colorValue="FF1A1233" position="0.6"/>
+                    <GradientStop colorValue="FF0B0B12" position="1"/>
+                </RadialGradient>
+            </Fill>
+            <Stroke thickness="12" name="Glow">
+                <SolidColor colorValue="FF7C3AED" name="Color"/>
+                <Feather strength="16" name="Feather"/>
+            </Stroke>
+            <Stroke thickness="2" name="Rim">
+                <SolidColor colorValue="FF7C3AED" name="Color"/>
+            </Stroke>
+        </Shape>
+
+        <!-- Back: full-bleed keyboard surface (owns the FocusData). -->
+        <Shape x="450" y="300" name="Surface" id="0:6">
+            <FocusData id="0:3"/>
+            <Rectangle width="900" height="600" originX="0.5" originY="0.5" name="Path"/>
+            <Fill name="Fill">
+                <SolidColor colorValue="FF050509" name="Color"/>
+            </Fill>
+        </Shape>
+
+        <!-- Eyes turn red when awake. -->
+        <LinearAnimation duration="60" name="Idle" id="0:60"/>
+        <LinearAnimation duration="45" name="Awake" id="0:61">
+            <KeyedObject objectId="0:36">
+                <KeyedProperty propertyKey="37">
+                    <KeyFrameColor value="FFEDEDED" interpolationType="linear"/>
+                    <KeyFrameColor value="FFFF2020" interpolationType="linear" frame="45"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="0:37">
+                <KeyedProperty propertyKey="37">
+                    <KeyFrameColor value="FFEDEDED" interpolationType="linear"/>
+                    <KeyFrameColor value="FFFF2020" interpolationType="linear" frame="45"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+
+        <StateMachine name="NOVIQO_MAIN" id="0:7">
+            <!-- keyPhase 1 = key down only. propertyValue 1 on the trigger write is required. -->
+            <StateMachineListener targetId="0:6" name="Key Wake" id="0:50">
+                <ListenerInputTypeKeyboard listenerTypeValue="keyboard">
+                    <KeyboardInput keyType="w" keyPhase="1"/>
+                </ListenerInputTypeKeyboard>
+                <ListenerViewModelChange>
+                    <BindablePropertyTrigger propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:42" propertyKey="686" direction="true"/>
+                    </BindablePropertyTrigger>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+            <StateMachineListener targetId="0:6" name="Key Talk" id="0:51">
+                <ListenerInputTypeKeyboard listenerTypeValue="keyboard">
+                    <KeyboardInput keyType="t" keyPhase="1"/>
+                </ListenerInputTypeKeyboard>
+                <ListenerViewModelChange>
+                    <BindablePropertyNumber propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:97" propertyKey="636" direction="true"/>
+                    </BindablePropertyNumber>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+            <StateMachineListener targetId="0:6" name="Key Escape" id="0:52">
+                <ListenerInputTypeKeyboard listenerTypeValue="keyboard">
+                    <KeyboardInput keyType="e" keyPhase="1"/>
+                    <KeyboardInput keyType="escape" keyPhase="1"/>
+                </ListenerInputTypeKeyboard>
+                <ListenerViewModelChange>
+                    <BindablePropertyNumber propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:98" propertyKey="636" direction="true"/>
+                    </BindablePropertyNumber>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+
+            <StateMachineListener targetId="0:6" name="Key Six" id="0:53">
+                <ListenerInputTypeKeyboard listenerTypeValue="keyboard">
+                    <KeyboardInput keyType="key6" keyPhase="1"/>
+                    <KeyboardInput keyType="kp6" keyPhase="1"/>
+                </ListenerInputTypeKeyboard>
+                <ListenerViewModelChange>
+                    <BindablePropertyNumber propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:99" propertyKey="636" direction="true"/>
+                    </BindablePropertyNumber>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+
+            <StateMachineListener targetId="0:150" name="Click Talk" id="0:54">
+                <ListenerInputTypePointerButton listenerTypeValue="click" pointerButtonValue="primary"/>
+                <ListenerViewModelChange>
+                    <BindablePropertyNumber propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:97" propertyKey="636" direction="true"/>
+                    </BindablePropertyNumber>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+
+            <StateMachineListener targetId="0:151" name="Click Wake" id="0:55">
+                <ListenerInputTypePointerButton listenerTypeValue="click" pointerButtonValue="primary"/>
+                <ListenerViewModelChange>
+                    <BindablePropertyTrigger propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:42" propertyKey="686" direction="true"/>
+                    </BindablePropertyTrigger>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+
+            <StateMachineListener targetId="0:152" name="Click Escape" id="0:56">
+                <ListenerInputTypePointerButton listenerTypeValue="click" pointerButtonValue="primary"/>
+                <ListenerViewModelChange>
+                    <BindablePropertyNumber propertyValue="1">
+                        <DataBindContext sourcePathIds="0:40-0:98" propertyKey="636" direction="true"/>
+                    </BindablePropertyNumber>
+                </ListenerViewModelChange>
+            </StateMachineListener>
+
+            <StateMachineLayer name="Story" id="0:8">
+                <AnyState x="400" y="-120" id="0:66"/>
+                <ExitState x="600" y="-120" id="0:67"/>
+                <EntryState x="0" y="100" id="0:68">
+                    <StateTransition stateToId="0:70"/>
+                </EntryState>
+
+                <AnimationState x="200" y="0" animationId="0:60" stateName="Normal" id="0:70">
+                    <FocusActionTarget targetId="0:6"/>
+                    <ListenerViewModelChange>
+                        <BindablePropertyNumber propertyValue="0">
+                            <DataBindContext sourcePathIds="0:40-0:41" propertyKey="636" direction="true"/>
+                        </BindablePropertyNumber>
+                    </ListenerViewModelChange>
+                    <StateTransition stateToId="0:71" duration="400">
+                        <TransitionViewModelCondition>
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyTrigger>
+                                    <DataBindContext sourcePathIds="0:40-0:42" propertyKey="686"/>
+                                </BindablePropertyTrigger>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueTriggerComparator/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+
+                <AnimationState x="450" y="0" animationId="0:61" stateName="Awake" id="0:71">
+                    <ListenerViewModelChange>
+                        <BindablePropertyNumber propertyValue="1">
+                            <DataBindContext sourcePathIds="0:40-0:41" propertyKey="636" direction="true"/>
+                        </BindablePropertyNumber>
+                    </ListenerViewModelChange>
+                </AnimationState>
+            </StateMachineLayer>
+        </StateMachine>
+    </Artboard>
+
+    <ViewModel defaultInstanceId="0:48" name="Noviqo" id="0:40">
+        <ViewModelPropertyNumber name="stage" id="0:41"/>
+        <ViewModelPropertyTrigger name="wake" id="0:42"/>
+        <ViewModelPropertyTrigger name="talk" id="0:43"/>
+        <ViewModelPropertyTrigger name="escape" id="0:44"/>
+        <ViewModelPropertyNumber name="eyeX" id="0:45"/>
+        <ViewModelPropertyNumber name="eyeY" id="0:46"/>
+        <ViewModelPropertyNumber name="corruption" id="0:47"/>
+        <ViewModelPropertyNumber name="mouseX" id="0:90"/>
+        <ViewModelPropertyNumber name="mouseY" id="0:91"/>
+        <ViewModelPropertyNumber name="still" id="0:92"/>
+        <ViewModelPropertyNumber name="scare" id="0:93"/>
+        <ViewModelPropertyNumber name="blackout" id="0:94"/>
+        <ViewModelPropertyNumber name="watch" id="0:95"/>
+        <ViewModelPropertyNumber name="phase" id="0:96"/>
+        <ViewModelPropertyNumber name="talkPress" id="0:97"/>
+        <ViewModelPropertyNumber name="escPress" id="0:98"/>
+        <ViewModelPropertyNumber name="sixPress" id="0:99"/>
+        <ViewModelPropertyNumber name="secret" id="0:104"/>
+        <ViewModelPropertyString name="status" id="0:110"/>
+        <ViewModelPropertyString name="line" id="0:111"/>
+        <ViewModelPropertyString name="alert" id="0:112"/>
+        <ViewModelPropertyString name="integrity" id="0:113"/>
+        <ViewModelPropertyString name="title" id="0:114"/>
+        <ViewModelPropertyNumber name="btnY" id="0:105"/>
+        <ViewModelInstance exports="true" name="Default" id="0:48">
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:41"/>
+            <ViewModelInstanceTrigger viewModelPropertyId="0:42"/>
+            <ViewModelInstanceTrigger viewModelPropertyId="0:43"/>
+            <ViewModelInstanceTrigger viewModelPropertyId="0:44"/>
+            <ViewModelInstanceNumber propertyValue="450" viewModelPropertyId="0:45"/>
+            <ViewModelInstanceNumber propertyValue="300" viewModelPropertyId="0:46"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:47"/>
+            <ViewModelInstanceNumber propertyValue="450" viewModelPropertyId="0:90"/>
+            <ViewModelInstanceNumber propertyValue="300" viewModelPropertyId="0:91"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:92"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:93"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:94"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:95"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:96"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:97"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:98"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:99"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:104"/>
+            <ViewModelInstanceString propertyValue="NOVIQO ONLINE  //  SYSTEM STATUS: OPERATIONAL" viewModelPropertyId="0:110"/>
+            <ViewModelInstanceString propertyValue="" viewModelPropertyId="0:111"/>
+            <ViewModelInstanceString propertyValue="" viewModelPropertyId="0:112"/>
+            <ViewModelInstanceString propertyValue="SYSTEM INTEGRITY  98%" viewModelPropertyId="0:113"/>
+            <ViewModelInstanceString propertyValue="NOVIQO // SYSTEM" viewModelPropertyId="0:114"/>
+            <ViewModelInstanceNumber propertyValue="548" viewModelPropertyId="0:105"/>
+        </ViewModelInstance>
+    </ViewModel>
+
+    <ScriptAsset file="track.luau" name="track" id="0:80"/>
+    <ScriptAsset file="fog.luau" name="fogScript" id="0:81"/>
+    <ScriptAsset file="crt_overlay.luau" name="crtOverlay" id="0:83"/>
+    <ShaderAsset file="shaders/fog.wgsl" name="fog" id="0:82"/>
+    <ShaderAsset file="shaders/crt.wgsl" name="crt" id="0:84"/>
+    <ScriptAsset file="trail.luau" name="trailScript" id="0:85"/>
+    <ShaderAsset file="shaders/ghost.wgsl" name="ghost" id="0:86"/>
+    <ScriptAsset file="horror_layer.luau" name="horrorScript" id="0:87"/>
+    <ShaderAsset file="shaders/horror.wgsl" name="horror" id="0:88"/>
+    <FontAsset file="Inter.ttf" name="Inter" id="0:100"/>
+    <ScriptAsset file="director.luau" name="director" id="0:89"/>
+</Rive>
