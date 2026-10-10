@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 name: noviqo-halloween
 logs:
   file: build/rive.log
   problems: build/problems.log
+=======
+name: noviqo-halloween
+logs:
+  file: build/rive.log
+  problems: build/problems.log
+>>>>>>> 451aecc09c58098cb8ef7702dfd10067eefc16a6
